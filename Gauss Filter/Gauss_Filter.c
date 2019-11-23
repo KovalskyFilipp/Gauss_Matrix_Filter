@@ -69,6 +69,7 @@ int main(void)
 
 	printf("%5d ", 5/2);
 	puts("Hello, World!");
+	printf("%d", width);
 	free(inPtr);
 	return 0;
 }
