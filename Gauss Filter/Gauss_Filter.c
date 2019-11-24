@@ -22,17 +22,17 @@ int main(void)
 	inPtr = (int*)malloc(width * height * sizeof(int));
 	int* luma = inPtr;
 	srand(time(0));
-	for (int i = 0; i < width; i++)  // цикл по строкам
+	for (int i = 0; i < height; i++)  // цикл по строкам
 	{
-		for (int j = 0; j < height; j++)  // цикл по столбцам
+		for (int j = 0; j < width; j++)  // цикл по столбцам
 		{
 			*(inPtr + i * width + j) = rand() % 255;
 		}
 	}
 
-	for (int i = 0; i < width; i++)  // цикл по строкам
+	for (int i = 0; i < height; i++)  // цикл по строкам
 	{
-		for (int j = 0; j < height; j++)  // цикл по столбцам
+		for (int j = 0; j < width; j++)  // цикл по столбцам
 		{
 			printf("%5d ", *(inPtr + i * width + j));
 		}
