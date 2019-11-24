@@ -35,7 +35,7 @@ int main(void)
 	memset(new_luma, 0, width * height);
 	memset(buf_luma, 0, width * height);
 	int* luma = inPtr;
-	srand(time(0));
+	//srand(time(0));
 	for (int i = 0; i < height; i++)  // цикл по строкам
 	{
 		for (int j = 0; j < width; j++)  // цикл по столбцам
@@ -52,54 +52,10 @@ int main(void)
 		}
 		printf("\n");
 	}
-	printf("---------------------------------------\n");
-	//for (i = 0; i < height - KERNEL_SIZE + 1; i++)
-	//{
-	//	for (j = 0; j < width - KERNEL_SIZE + 1; j++)
-	//	{
-	//		for (m = 0; m < KERNEL_SIZE; m++)
-	//		{
-	//			for (n = 0; n < KERNEL_SIZE; n++)
-	//			{
-	//				result = result + *(luma + (i + n) * width + j + m) * kernel_matrix[m][n];
 
-	//			}
+	printf("---------------------------------------------------------------------------------------------\n");
 
-	//		}
-	//		*(new_luma + (i + (KERNEL_SIZE >> 1)) * width + j + (KERNEL_SIZE >> 1)) = result;
-	//		result = 0;
-	//	}
-
-	//}
-
-	//for (i = 1; i < height - 1; i++)
-	//{
-	//	for (j = 1; j < width - 1; j++)
-	//	{
-	//		*(luma + (i  * width + j)) = *(new_luma + (i * width + j));
-	//	}
-
-	//}
-	//
-	//for (int i = 0; i < height; i++)  // цикл по строкам
-	//{
-	//	for (int j = 0; j < width; j++)  // цикл по столбцам
-	//	{
-	//		printf("%5d ", *(inPtr + i * width + j));
-	//	}
-	//	printf("\n");
-	//}
-	printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-
-	//for (int i = 1; i < height - 1; i++)  // цикл по строкам
-	//{
-	//	for (int j = 1; j < width - 1; j++)  // цикл по столбцам
-	//	{
-	//		printf("%5d ", *(new_luma + i * width + j));
-	//	}
-	//	printf("\n");
-	//}
-	puts("Hello, World!");
+	//puts("Hello, World!");
 
 	for (i = 0; i < height; i++)
 	{
@@ -131,14 +87,14 @@ int main(void)
 		}
 
 	}
-	for (int i = 0; i < height; i++)  // цикл по строкам
-	{
-		for (int j = 0; j < width; j++)  // цикл по столбцам
-		{
-			printf("%5d ", *(buf_luma + i * width + j));
-		}
-		printf("\n");
-	}
+	//for (int i = 0; i < height; i++)  // цикл по строкам
+	//{
+	//	for (int j = 0; j < width; j++)  // цикл по столбцам
+	//	{
+	//		printf("%5d ", *(buf_luma + i * width + j));
+	//	}
+	//	printf("\n");
+	//}
 
 	for (i = 0; i <= height - KERNEL_SIZE; i++)
 	{
@@ -169,5 +125,7 @@ int main(void)
 	}
 
 	free(inPtr);
+	free(new_luma);
+	free(buf_luma);
 	return 0;
 }
