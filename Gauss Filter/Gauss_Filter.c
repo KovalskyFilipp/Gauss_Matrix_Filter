@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "stdlib.h"
-#define KERNEL_SIZE 3
+#define KERNEL_SIZE 5
 
 int main(void)
 {
@@ -10,18 +10,17 @@ int main(void)
 	int j = 0;
 	int m = 0;
 	int n = 0 ;
-	int kernelSize = 3;
 	int height = 10;
 	int result = 0;
-	//float kernel[5][5] = { { 0.000789, 0.006581, 0.013347, 0.006581, 0.000789 },
-	//					{ 0.006581, 0.054901, 0.111345, 0.054901, 0.006581 },
-	//					{ 0.013347, 0.111345, 0.225821, 0.111345, 0.013347},
-	//					{  0.006581, 0.054901, 0.111345, 0.054901, 0.006581 },
-	//					{  0.000789, 0.006581, 0.013347, 0.006581, 0.000789 } };
-	float kernel_matrix[3][3] = {
-					{  0.054901, 0.111345, 0.054901},
-					{  0.111345, 0.225821, 0.111345},
-					{  0.054901, 0.111345, 0.054901}};
+	float kernel_matrix[KERNEL_SIZE][KERNEL_SIZE] = { { 0.000789, 0.006581, 0.013347, 0.006581, 0.000789 },
+						{ 0.006581, 0.054901, 0.111345, 0.054901, 0.006581 },
+						{ 0.013347, 0.111345, 0.225821, 0.111345, 0.013347},
+						{  0.006581, 0.054901, 0.111345, 0.054901, 0.006581 },
+						{  0.000789, 0.006581, 0.013347, 0.006581, 0.000789 } };
+	//float kernel_matrix[][3] = {
+	//				{  0.054901, 0.111345, 0.054901},
+	//				{  0.111345, 0.225821, 0.111345},
+	//				{  0.054901, 0.111345, 0.054901}};
 	int* inPtr;
 	int* new_luma;
 	inPtr = (int*)malloc(width * height * sizeof(int));
@@ -47,9 +46,9 @@ int main(void)
 	}
 	printf("---------------------------------------\n");
 
-	for (i = 0; i < height - KERNEL_SIZE + 1; i++)
+	for (i = 0; i < height - (KERNEL_SIZE >> 1); i++)
 	{
-		for (j = 0; j < width - KERNEL_SIZE + 1; j++)
+		for (j = 0; j < width - (KERNEL_SIZE >> 1); j++)
 		{
 			for (m = 0; m < KERNEL_SIZE; m++)
 			{
@@ -66,9 +65,9 @@ int main(void)
 
 	}
 
-	for (i = KERNEL_SIZE >> 1; i < height - KERNEL_SIZE >> 1; i++)
+	for (i = KERNEL_SIZE >> 1; i < height - (KERNEL_SIZE >> 1); i++)
 	{
-		for (j = KERNEL_SIZE >> 1; j < width - KERNEL_SIZE >> 1; j++)
+		for (j = KERNEL_SIZE >> 1; j < width - (KERNEL_SIZE >> 1); j++)
 		{
 			*(luma + (i  * width + j)) = *(new_luma + (i * width + j));
 		}
@@ -85,9 +84,9 @@ int main(void)
 	}
 	printf("----------------------------------------------------------------------------------------------------------------------------------------------------------\n");
 
-	for (int i = 1; i < height - 1; i++)  // цикл по строкам
+	for (int i = KERNEL_SIZE >> 1; i < height - (KERNEL_SIZE >> 1); i++)  // цикл по строкам
 	{
-		for (int j = 1; j < width - 1; j++)  // цикл по столбцам
+		for (int j = KERNEL_SIZE >> 1; j < width - (KERNEL_SIZE >> 1); j++)  // цикл по столбцам
 		{
 			printf("%5d ", *(new_luma + i * width + j));
 		}
