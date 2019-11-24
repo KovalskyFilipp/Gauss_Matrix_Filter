@@ -1,4 +1,3 @@
-Мой диск
 #include <stdio.h>
 #include "stdlib.h"
 #define KERNEL_SIZE 5
